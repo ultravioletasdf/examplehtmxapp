@@ -1,3 +1,4 @@
+#:schema https://github.com/SchemaStore/schemastore/raw/0890a3e1872731b569e66903f32abe669a970b8a/src/schemas/json/air-verse-air.json
 [build]
   pre_cmd = [ "bunx @tailwindcss/cli -i ./frontend/input.css -o ./assets/tailwind.css", "sqlc generate", "make migrate", "templ generate --notify-proxy" ]
   cmd = "go build -o ./tmp/main ."
