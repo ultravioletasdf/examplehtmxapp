@@ -1,0 +1,8 @@
+tmp/
+node_modules/
+migrations/
+sql/*.go
+frontend/*_templ.*
+assets/tailwind.css
+.env
+*.db

@@ -1,0 +1,156 @@
+package frontend
+
+
+
+templ SignIn() {
+	@Base() {
+		<div class="w-full h-full">
+			<div class="bg-linear-to-b from-primary to-base-200 to-50% w-full h-full md:w-1/2 md:h-3/4 lg:w-1/3 md:rounded-box px-16 py-8 transition-all flex justify-center -translate-1/2 top-1/2 left-1/2 fixed flex-col gap-2 shadow-2xl">
+				// <img src="https://avatars.githubusercontent.com/u/148682089?s=128&v=4" class="rounded h-16 w-16 outline-2 outline-base-100 outline-solid outline-offset-2">
+				<h1 class="text-3xl font-bold text-base-content/90">Welcome Back </h1>
+				<div class="text-base-content/75 font-semibold">Sign in to your account to access [appname]</div>
+				<form class="mt-2 flex flex-col gap-2" hx-post="/sign/in" hx-target="#toasts">
+					<div>
+						<label class="input validator w-full">
+						  <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></g></svg>
+						  <input name="email" type="email" placeholder="mail@example.com" required/>
+						</label>
+						<div class="validator-hint hidden">Enter valid email address</div>
+					</div>
+					<div>
+						<label class="input validator w-full">
+							<svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle></g></svg>
+							<input type="password" name="password" required placeholder="Password" minlength="8" maxlength="72" title="Must be more than 8 characters, and less than 72 characters"/>
+						</label>
+						<p class="validator-hint hidden">
+							Must be more than 8 characters
+						</p>
+					</div>
+					<button id="continue" class="btn btn-primary btn-block mt-2" disabled>Sign In</button>
+					<div class="flex justify-between">
+						<div class="text-base-content/80 text-center text-sm">Don't have an account? <a href="/sign/up" class="inline-block text-primary font-black no-decoration hover:underline">Sign Up</a></div>
+						<a href="/reset/password" hx-boost="true" class="text-white/50 text-sm text-center no-decoration hover:underline active:text-primary">Forgot Password?</a>
+					</div>
+				</form>
+			</div>
+		</div>
+		@ValidatorScript()
+	}
+}
+templ SignUp() {
+	@Base() {
+		<div class="w-full h-full">
+			<div class="bg-linear-to-b from-primary to-base-200 to-50% w-full h-full md:w-1/2 md:h-3/4 lg:w-1/3 md:rounded-box px-16 py-8 transition-all flex justify-center -translate-1/2 top-1/2 left-1/2 fixed flex-col gap-2 shadow-2xl">
+				// <img src="https://avatars.githubusercontent.com/u/148682089?s=128&v=4" class="rounded h-16 w-16 outline-2 outline-base-100 outline-solid outline-offset-2">
+				<h1 class="text-3xl font-bold text-base-content/90">Create an account</h1>
+				<div class="text-base-content/75 font-semibold">Create an account to access to access [appname]</div>
+				<form class="mt-2 flex flex-col gap-2" hx-post="/sign/up" hx-target="#toasts" hx-swap="innerHTML">
+					<div>
+						<label class="input validator w-full">
+						  <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></g></svg>
+						  <input name="email" type="email" placeholder="mail@example.com" required/>
+						</label>
+						<div class="validator-hint hidden">Enter valid email address</div>
+					</div>
+					<div>
+						<label class="input validator w-full">
+							<svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle></g></svg>
+							<input type="password" name="password" required placeholder="Password" minlength="8" maxlength="72" title="Must be more than 8 characters, and less than 72 characters"/>
+						</label>
+						<p class="validator-hint hidden">
+							Must be more than 8 characters
+						</p>
+					</div>
+					<button id="continue" class="btn btn-primary btn-block mt-2" disabled>Sign Up</button>
+					<div class="flex justify-between">
+						<div class="text-base-content/80 text-center text-sm">Already have an account? <a href="/sign/in" class="inline-block text-primary font-black no-decoration hover:underline">Sign In</a></div>
+						<a href="/reset/password" hx-boost="true" class="text-white/50 text-sm text-center no-decoration hover:underline active:text-primary">Forgot Password?</a>
+					</div>
+				</form>
+			</div>
+		</div>
+		@ValidatorScript()
+	}
+}
+templ Onboarding() {
+	@Base() {
+		<div class="w-full h-full">
+			<div class="bg-linear-to-b from-primary to-base-200 to-50% w-full h-full md:w-1/2 md:h-3/4 lg:w-1/3 md:rounded-box px-16 py-8 transition-all flex justify-center -translate-1/2 top-1/2 left-1/2 fixed flex-col gap-2 shadow-2xl">
+				// <img src="https://avatars.githubusercontent.com/u/148682089?s=128&v=4" class="rounded h-16 w-16 outline-2 outline-base-100 outline-solid outline-offset-2">
+				<h1 class="text-3xl font-bold text-base-content/90">Verify your email address</h1>
+				<div class="text-base-content/75 font-semibold">Welcome to [appname]! Verify your email address to continue</div>
+				<form class="mt-2 flex flex-col gap-2" hx-put="/onboarding" hx-target="#toasts" hx-swap="innerHTML">
+					<div class="flex gap-4">
+						<input name="pin-1" type="number" class="input input-xl no-spinner" min="1" max="9"/>
+						<input name="pin-2" type="number" class="input input-xl no-spinner" min="1" max="9"/>
+						<input name="pin-3" type="number" class="input input-xl no-spinner" min="1" max="9"/>
+						<input name="pin-4" type="number" class="input input-xl no-spinner" min="1" max="9"/>
+						<input name="pin-5" type="number" class="input input-xl no-spinner" min="1" max="9"/>
+						<input name="pin-6" type="number" class="input input-xl no-spinner" min="1" max="9"/>
+					</div>
+				</form>
+			</div>
+		</div>
+		@PinInputScript()
+	}
+}
+
+var pinHandle = templ.NewOnceHandle()
+
+templ PinInputScript() {
+	@pinHandle.Once() {
+		<script>
+			const inputs = document.querySelectorAll("input[type=number]")
+			for (let input of inputs) {
+			    input.value = ""
+			    input.oninput = handlePinInput
+				input.onkeydown = handlePinKeydown
+			}
+			function handlePinInput(event) {
+			    if (!event.target.value.match(/\d/)) {
+					event.target.value = event.target.value.replace(/[^\d]/g, "")
+					return
+				}
+				if (!event.target.nextElementSibling) {
+				    htmx.trigger("form", "submit")
+					if (event.target.value.length > 1) event.target.value = event.target.value[0]
+					return
+				}
+			    if (event.target.value.length > 1) event.target.value = event.target.value.at(-1)
+
+			    event.target.nextElementSibling.value = ""
+				event.target.nextElementSibling.focus()
+			}
+			function handlePinKeydown(event) {
+			    if (event.key == "Backspace" && event.target.previousElementSibling) {
+					event.preventDefault()
+					event.target.value = ""
+					event.target.previousElementSibling.value = ""
+					event.target.previousElementSibling.focus()
+				}
+			}
+		</script>
+	}
+}
+
+var validateHandle = templ.NewOnceHandle()
+
+templ ValidatorScript() {
+	@validateHandle.Once() {
+		<script>
+		    const button = document.querySelector('#continue')
+		    const email = document.querySelector("input[name=email]")
+			const password = document.querySelector("input[name=password]")
+			email.oninput = onInput
+			email.onchange = onInput
+			password.oninput = onInput
+			password.onchange = onInput
+
+			onInput()
+
+			function onInput() {
+			  button.disabled = !(email.checkValidity() && password.checkValidity())
+			}
+		</script>
+	}
+}

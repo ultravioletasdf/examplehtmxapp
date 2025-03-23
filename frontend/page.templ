@@ -1,0 +1,51 @@
+package frontend
+
+templ Base() {
+	<!DOCTYPE html>
+	<html class="h-full">
+		<head>
+			<title>Gofiber + HTMX</title>
+			<link rel="stylesheet" href="/assets/tailwind.css">
+			<script src="/assets/htmx.js" defer />
+		</head>
+		<body class="h-full bg-base-100">
+			{ children... }
+			<div class="toast toast-center" id="toasts"></div>
+			@FadeScript()
+			@ToastScript()
+		</body>
+	</html>
+}
+var fadeHandle = templ.NewOnceHandle()
+templ FadeScript() {
+	@fadeHandle.Once() {
+		<script>
+			function fade(el) {
+			    el.style.opacity = 0
+				setTimeout(() => {
+				  el.remove()
+				}, 100)
+			}
+		</script>
+	}
+}
+templ SoftError(message string) {
+	<div id="toast" class="alert alert-error alert-soft opacity-100 transition duration-250" hx-trigger="load delay:2s" hx-on::trigger="this.classList.add('opacity-0!')">
+		<span>{message}</span>
+ 	</div>
+}
+var toastHandle = templ.NewOnceHandle()
+templ ToastScript() {
+	@toastHandle.Once() {
+		<script>
+			const params = new URLSearchParams(window.location.search)
+			if (params.get("toast") && params.get("toast").trim() != "") {
+   			    toasts.insertAdjacentHTML("afterbegin",
+     			    `<div id="toast" class="alert alert-error alert-soft opacity-100 transition duration-250" hx-trigger="load delay:3s" hx-on::trigger="this.classList.add('opacity-0!')">
+                        <span>${params.get("toast")}</span>
+                    </div>`)
+			}
+
+		</script>
+	}
+}

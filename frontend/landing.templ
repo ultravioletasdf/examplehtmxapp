@@ -1,0 +1,28 @@
+package frontend
+
+import (
+	sqlc "examplehtmxapp/sql"
+	"fmt"
+)
+
+templ Landing(user sqlc.User) {
+	@Base() {
+		<div>
+			Hello Example Go App
+		</div>
+		if user.ID != 0 {
+			<div>
+				{fmt.Sprint(user.ID)}
+				{user.Email}
+				if user.Verified == 1 {
+					Verified
+				}
+			</div>
+		}
+		<div hx-boost="true">
+			<a href="/sign/in" class="btn btn-primary">Sign In</a>
+			<a href="/sign/out" class="btn btn-secondary">Sign Out</a>
+			<a href="/settings" class="btn btn-neutral">Settings</a>
+		</div>
+	}
+}
